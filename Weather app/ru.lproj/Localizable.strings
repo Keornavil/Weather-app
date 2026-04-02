@@ -1,0 +1,15 @@
+"weather.title" = "Погода";
+"weather.retry" = "Повторить";
+"weather.hourly.title" = "Почасовой прогноз";
+"weather.daily.title" = "Прогноз на 3 дня";
+"weather.local_time" = "Местное время: %@";
+"weather.feels_like" = "Ощущается как %d°C";
+"weather.tomorrow" = "Завтра";
+"weather.fallback_city_query" = "Москва";
+"error.invalid_url" = "Не удалось сформировать URL запроса.";
+"error.invalid_response" = "Сервер вернул некорректный ответ.";
+"error.http_status" = "Ошибка сервера (%d).";
+"error.empty_forecast" = "Данные прогноза отсутствуют.";
+"error.generic" = "Не удалось загрузить погоду. Попробуйте снова.";
+"error.location_timeout" = "Не удалось получить геопозицию вовремя.";
+"error.location_unavailable" = "Геопозиция недоступна. Нажмите «Повторить».";

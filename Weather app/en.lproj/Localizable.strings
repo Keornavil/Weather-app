@@ -1,0 +1,15 @@
+"weather.title" = "Weather";
+"weather.retry" = "Retry";
+"weather.hourly.title" = "Hourly Forecast";
+"weather.daily.title" = "3-Day Forecast";
+"weather.local_time" = "Local time: %@";
+"weather.feels_like" = "Feels like %d°C";
+"weather.tomorrow" = "Tomorrow";
+"weather.fallback_city_query" = "Moscow";
+"error.invalid_url" = "Could not create request URL.";
+"error.invalid_response" = "Server returned an invalid response.";
+"error.http_status" = "Server error (%d).";
+"error.empty_forecast" = "Forecast data is empty.";
+"error.generic" = "Failed to load weather. Please try again.";
+"error.location_timeout" = "Failed to get location in time.";
+"error.location_unavailable" = "Location is unavailable. Tap Retry.";

@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcuserstate
+
+# Local temp folders
+docs/
+
+# Accidental local clone
+Weather-app/
