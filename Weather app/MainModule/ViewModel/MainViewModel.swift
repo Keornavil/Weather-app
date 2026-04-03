@@ -92,15 +92,15 @@ final class MainViewModel: MainViewModelProtocol {
             .timeout(.seconds(4), scheduler: RunLoop.main, customError: { MainViewModelError.locationTimeout })
             .prefix(1)
             .flatMap { [repository] coordinate -> AnyPublisher<WeatherData, Error> in
-                guard let coordinate else {
-                    return Fail(error: MainViewModelError.locationUnavailable)
-                        .eraseToAnyPublisher()
+                let query: WeatherQuery
+                if let coordinate {
+                    query = .coordinates(
+                        latitude: coordinate.latitude,
+                        longitude: coordinate.longitude
+                    )
+                } else {
+                    query = .city(Self.fallbackCityQuery)
                 }
-
-                let query: WeatherQuery = .coordinates(
-                    latitude: coordinate.latitude,
-                    longitude: coordinate.longitude
-                )
                 return repository.fetchWeather(for: query)
             }
             .map { Self.mapToContent($0) }
@@ -118,7 +118,6 @@ final class MainViewModel: MainViewModelProtocol {
 
 private enum MainViewModelError: Error {
     case locationTimeout
-    case locationUnavailable
 }
 
 extension MainViewModelError: LocalizedError {
@@ -126,14 +125,17 @@ extension MainViewModelError: LocalizedError {
         switch self {
         case .locationTimeout:
             return localizedStringRU("error.location_timeout")
-        case .locationUnavailable:
-            return localizedStringRU("error.location_unavailable")
         }
     }
 }
 
 // MARK: - Mapping
 private extension MainViewModel {
+    static var fallbackCityQuery: String {
+        let value = localizedStringRU("weather.fallback_city_query").trimmingCharacters(in: .whitespacesAndNewlines)
+        return value.isEmpty ? "Moscow" : value
+    }
+
     nonisolated private static func mapToContent(_ weather: WeatherData) -> MainViewContent {
         let tz = TimeZone(identifier: weather.timezoneID) ?? .current
 
