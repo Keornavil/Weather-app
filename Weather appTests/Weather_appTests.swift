@@ -1,7 +1,6 @@
 import Testing
 import Combine
 import CoreLocation
-import UIKit
 @testable import Weather_app
 
 struct Weather_appTests {
@@ -12,11 +11,9 @@ struct Weather_appTests {
         let repository = WeatherRepositoryMock()
         repository.result = .success(Self.makeWeatherData())
         let location = LocationServiceMock()
-        let coordinator = CoordinatorMock()
         let viewModel = MainViewModel(
             repository: repository,
-            locationService: location,
-            coordinator: coordinator
+            locationService: location
         )
 
         var states: [MainViewState] = []
@@ -62,11 +59,9 @@ struct Weather_appTests {
         let repository = WeatherRepositoryMock()
         repository.result = .success(Self.makeWeatherData())
         let location = LocationServiceMock()
-        let coordinator = CoordinatorMock()
         let viewModel = MainViewModel(
             repository: repository,
-            locationService: location,
-            coordinator: coordinator
+            locationService: location
         )
 
         var states: [MainViewState] = []
@@ -95,11 +90,9 @@ struct Weather_appTests {
         let repository = WeatherRepositoryMock()
         repository.result = .failure(TestError.network)
         let location = LocationServiceMock()
-        let coordinator = CoordinatorMock()
         let viewModel = MainViewModel(
             repository: repository,
-            locationService: location,
-            coordinator: coordinator
+            locationService: location
         )
 
         var states: [MainViewState] = []
@@ -216,14 +209,6 @@ private final class LocationServiceMock: LocationServiceProtocol {
     func requestLocation() -> AnyPublisher<CLLocationCoordinate2D?, Never> {
         subject.eraseToAnyPublisher()
     }
-}
-
-@MainActor
-private final class CoordinatorMock: CoordinatorProtocol {
-    var navigationController: UINavigationController?
-    var assemblyBuilder: AssemblyBuilderProtocol?
-
-    func initialMainViewController() {}
 }
 
 private enum TestError: Error {

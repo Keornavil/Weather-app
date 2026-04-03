@@ -69,21 +69,17 @@ final class MainViewModel: MainViewModelProtocol {
     // MARK: - Dependencies
     private let repository: WeatherRepositoryProtocol
     private let locationService: LocationServiceProtocol
-    private let coordinator: CoordinatorProtocol
 
     // MARK: - Combine
-    private var cancellables = Set<AnyCancellable>()
     private var currentRequest: AnyCancellable?
 
     // MARK: - Init
     init(
         repository: WeatherRepositoryProtocol,
-        locationService: LocationServiceProtocol,
-        coordinator: CoordinatorProtocol
+        locationService: LocationServiceProtocol
     ) {
         self.repository = repository
         self.locationService = locationService
-        self.coordinator = coordinator
     }
 
     // MARK: - Public

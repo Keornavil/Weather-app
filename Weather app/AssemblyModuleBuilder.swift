@@ -18,8 +18,7 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         let locationService = LocationService()
         let viewModel = MainViewModel(
             repository: repository,
-            locationService: locationService,
-            coordinator: coordinator
+            locationService: locationService
         )
         let viewController = MainViewController(viewModel: viewModel)
         return viewController

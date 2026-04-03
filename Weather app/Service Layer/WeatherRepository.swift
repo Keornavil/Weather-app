@@ -81,6 +81,18 @@ private extension WeatherRepository {
                 )
             }
 
+        let tomorrowHours = forecast.forecast.forecastday
+            .dropFirst()
+            .first?
+            .hour
+            .map {
+                HourlyWeather(
+                    time: Date(timeIntervalSince1970: TimeInterval($0.timeEpoch)),
+                    temperatureCelsius: $0.tempC,
+                    condition: $0.condition.text
+                )
+            } ?? []
+
         let daily = forecast.forecast.forecastday.prefix(3).map {
             DailyWeather(
                 date: Date(timeIntervalSince1970: TimeInterval($0.dateEpoch)),
@@ -106,7 +118,7 @@ private extension WeatherRepository {
                 feelsLikeCelsius: current.current.feelsLikeC,
                 condition: current.current.condition.text
             ),
-            hourly: todayHours,
+            hourly: todayHours + tomorrowHours,
             daily: daily
         )
     }

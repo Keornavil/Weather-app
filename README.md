@@ -16,7 +16,7 @@ UI: UIKit
 ## Основной функционал
 Погода на главном экране:
 - текущая температура и состояние
-- почасовой прогноз с текущего часа до конца дня
+- почасовой прогноз с текущего часа до конца дня и все часы следующего дня
 - прогноз на 3 дня
 
 Почасовой просмотр по дню:
@@ -35,12 +35,12 @@ UI: UIKit
 ## Структура проекта
 - `Weather app/MainModule/Model` — доменные модели погоды
 - `Weather app/MainModule/View` — экран и UI
-- `Weather app/MainModule/ViewModel` — состояние экрана и бизнес-логика отображения
+- `Weather app/MainModule/ViewModel` — состояние экрана и бизнес-логика отображения (зависимости: `WeatherRepository` и `LocationService`)
 - `Weather app/Service Layer/LocationService.swift` — получение координат
 - `Weather app/Service Layer/NetworkServiceWithAsync.swift` — generic загрузка и декодирование
 - `Weather app/Service Layer/WeatherService.swift` — формирование endpoint и API-запросы
 - `Weather app/Service Layer/WeatherRepository.swift` — сборка доменной модели из API-ответов
-- `Weather app/Coordinator.swift` — стартовый роутинг
+- `Weather app/Coordinator.swift` — стартовый роутинг (без навигационной логики в `MainViewModel`)
 - `Weather app/AssemblyModuleBuilder.swift` — сборка зависимостей модуля
 
 ## Скриншоты
